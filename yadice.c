@@ -86,10 +86,14 @@ int main(int argc, char *argv[])
 
 int on_btnRoll_clicked (GtkButton *b)
 {
+    Spot[3].Hold = true;
     for (int i = 0; i < 5; i++)
     {
-        Spot[i].Value = rand () % 6 +1;
-        Spot[i].FileName = SelectImage(Spot[i].Value);
+        if (Spot[i].Hold == false)
+        {
+            Spot[i].Value = rand () % 6 +1;
+            Spot[i].FileName = SelectImage(Spot[i].Value);
+        }
     }
 
     const gchar *charA = Spot[0].FileName;
