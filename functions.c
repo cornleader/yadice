@@ -2,9 +2,11 @@
 #include <stdbool.h>
 #include "functions.h"
 
+
+//global struct
 extern struct DiceSpot Spot[4];
 
-
+//selects the proper image for each dice spot
 char *SelectImage(int a)
 {
     char *image;
@@ -33,7 +35,7 @@ char *SelectImage(int a)
    return image;
 }
 
-
+//clear structure
 void NewGame()
 {        
     srand(time(NULL));
@@ -45,6 +47,43 @@ void NewGame()
         Spot[x].Hold = false;
     }
 }
+
+//hold specific dice spots and change button display
+char *Hold(int i)
+{
+   char *q;
+   if (Spot[i].Hold == false)
+   {
+      q = "HOLD";
+      Spot[i].Hold = true;
+    
+   }
+   else
+   {
+      q = "Roll";
+      Spot[0].Hold = false; 
+   }
+   return q;
+}
+
+//assign and calculate ace to six spots on score card
+gchar *ScoreTop(int a)
+{
+   int intTotal = 0;
+   for (int x = 0; x < 5; x++)
+   {
+      if(Spot[x].Value == a)
+      {
+         intTotal = intTotal + a;
+      }      
+   }
+   //convert int to gchar
+   gchar *display;
+   display = g_strdup_printf("%d", intTotal);  
+   //********************
+   return display;
+}
+
 
 
 //equivlent of strcat() but using pointers

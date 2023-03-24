@@ -1,6 +1,7 @@
 #include <gtk/gtk.h>
 #include <stdbool.h>
 
+
 struct DiceSpot
 {
     char *FileName;
@@ -12,4 +13,6 @@ struct DiceSpot
 char *CombineStrings(int *A, const char*B);
 char *SelectImage(int a);
 void NewGame();
+char *Hold(int i);
+gchar *ScoreTop(int a);
 

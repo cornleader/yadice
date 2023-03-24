@@ -30,11 +30,12 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <child>
-                      <object class="GtkCheckButton">
+                      <object class="GtkCheckButton" id="chk1">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="draw-indicator">True</property>
+                        <signal name="toggled" handler="on_chk1_toggled" swapped="no"/>
                       </object>
                       <packing>
                         <property name="x">110</property>
@@ -59,10 +60,10 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="lbl1">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">888</property>
+                        <property name="label" translatable="yes">0</property>
                         <attributes>
                           <attribute name="font-desc" value="Sans Bold 10"/>
                           <attribute name="scale" value="2"/>
@@ -94,10 +95,10 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="lbl2">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">888</property>
+                        <property name="label" translatable="yes">0</property>
                         <attributes>
                           <attribute name="font-desc" value="Sans Bold 10"/>
                           <attribute name="scale" value="2"/>
@@ -112,11 +113,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkCheckButton">
+                      <object class="GtkCheckButton" id="chk2">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="draw-indicator">True</property>
+                        <signal name="toggled" handler="on_chk2_toggled" swapped="no"/>
                       </object>
                       <packing>
                         <property name="x">110</property>
@@ -141,10 +143,10 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="lbl3">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">888</property>
+                        <property name="label" translatable="yes">0</property>
                         <attributes>
                           <attribute name="font-desc" value="Sans Bold 10"/>
                           <attribute name="scale" value="2"/>
@@ -159,11 +161,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkCheckButton">
+                      <object class="GtkCheckButton" id="chk3">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="draw-indicator">True</property>
+                        <signal name="toggled" handler="on_chk3_toggled" swapped="no"/>
                       </object>
                       <packing>
                         <property name="x">110</property>
@@ -188,10 +191,10 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="lbl4">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">888</property>
+                        <property name="label" translatable="yes">0</property>
                         <attributes>
                           <attribute name="font-desc" value="Sans Bold 10"/>
                           <attribute name="scale" value="2"/>
@@ -206,11 +209,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkCheckButton">
+                      <object class="GtkCheckButton" id="chk4">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="draw-indicator">True</property>
+                        <signal name="toggled" handler="on_chk4_toggled" swapped="no"/>
                       </object>
                       <packing>
                         <property name="x">110</property>
@@ -235,10 +239,10 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="lbl5">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">888</property>
+                        <property name="label" translatable="yes">0</property>
                         <attributes>
                           <attribute name="font-desc" value="Sans Bold 10"/>
                           <attribute name="scale" value="2"/>
@@ -253,11 +257,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkCheckButton">
+                      <object class="GtkCheckButton" id="chk5">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="draw-indicator">True</property>
+                        <signal name="toggled" handler="on_chk5_toggled" swapped="no"/>
                       </object>
                       <packing>
                         <property name="x">110</property>
@@ -282,10 +287,10 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="lbl6">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">888</property>
+                        <property name="label" translatable="yes">0</property>
                         <attributes>
                           <attribute name="font-desc" value="Sans Bold 10"/>
                           <attribute name="scale" value="2"/>
@@ -300,11 +305,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkCheckButton">
+                      <object class="GtkCheckButton" id="chk6">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="draw-indicator">True</property>
+                        <signal name="toggled" handler="on_chk6_toggled" swapped="no"/>
                       </object>
                       <packing>
                         <property name="x">110</property>
@@ -329,10 +335,9 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="lblTopTotal1">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">888</property>
                         <attributes>
                           <attribute name="font-desc" value="Sans Bold 10"/>
                           <attribute name="scale" value="2"/>
@@ -364,10 +369,9 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="lblBonus">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">888</property>
                         <attributes>
                           <attribute name="font-desc" value="Sans Bold 10"/>
                           <attribute name="scale" value="2"/>
@@ -398,10 +402,9 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="lblTopTotal2">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">888</property>
                         <attributes>
                           <attribute name="font-desc" value="Sans Bold 10"/>
                           <attribute name="scale" value="2"/>
