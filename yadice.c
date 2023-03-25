@@ -30,8 +30,9 @@
 #include <stdbool.h>
 
 //Create a global struct to manage each of the 5 dice images and their parameters.
-struct DiceSpot Spot[4];
-int intRollsLeft = 3;       //keep track of remaining rolls per turn
+struct DiceSpot Spot[5];
+int intTopSpots = 0;
+int intScore[2];
 
 
 
@@ -41,17 +42,24 @@ GtkWidget *imgA, *imgB, *imgC, *imgD, *imgE;
 GtkWidget *btnA, *btnB, *btnC, *btnD, *btnE; 
 GtkWidget *chk1, *chk2, *chk3, *chk4, *chk5, *chk6; 
 GtkWidget *lbl1, *lbl2, *lbl3, *lbl4, *lbl5, *lbl6;
+GtkWidget *lblTopTotal1, *lblTopTotal2, *lblBonus;
 GtkBuilder	*builder;
 
-
+void ResetHold();
+void *DisplayDice();
+void FinishTop();
 //*******************************************************
 // int main. build window and elements usig glade file
 //*******************************************************
  
 int main(int argc, char *argv[]) 
 {
-    NewGame();
-
+    
+    ResetTurn();
+    srand(time(NULL));
+    intScore[0] = 0;
+    intScore[1] = 0;
+    
 	gtk_init(&argc, &argv); // init Gtk
 
     // connect to xml file, yadice.glade, to build window on screen 
@@ -85,11 +93,17 @@ int main(int argc, char *argv[])
     lbl5 = GTK_WIDGET(gtk_builder_get_object(builder, "lbl5"));
     lbl6 = GTK_WIDGET(gtk_builder_get_object(builder, "lbl6"));
     btnRoll= GTK_WIDGET(gtk_builder_get_object(builder, "btnRoll"));
-  
+    lblTopTotal1 = GTK_WIDGET(gtk_builder_get_object(builder, "lblTopTotal1"));
+    lblTopTotal2 = GTK_WIDGET(gtk_builder_get_object(builder, "lblTopTotal2"));
+    lblBonus = GTK_WIDGET(gtk_builder_get_object(builder, "lblBonus"));
+   
     gtk_widget_show(Window1);
-	gtk_main();
-        
 
+  
+  
+    gtk_main();
+  
+  
 	return EXIT_SUCCESS;
 }
 //*************************************************************************
@@ -107,13 +121,219 @@ int on_btnRoll_clicked (GtkButton *b)
             if (Spot[i].Hold == false)
             {
                 Spot[i].Value = rand () % 6 +1;
-                //Spot[i].Value = 6;                  //TEST DATA
-
                 Spot[i].FileName = SelectImage(Spot[i].Value);
             }
         }
         intRollsLeft--;
     }
+    DisplayDice();
+}
+
+// hold buttons
+int on_btnA_clicked (GtkButton *b)
+{
+    if (intRollsLeft == 3)
+    {
+        return 0;
+    }
+    char *s;
+    s = Hold(0);
+    gtk_button_set_label(GTK_BUTTON(btnA), s);
+    
+}
+int on_btnB_clicked (GtkButton *b)
+{
+    if (intRollsLeft == 3)
+    {
+        return 0;
+    }
+    char *s;
+    s = Hold(1);
+    gtk_button_set_label(GTK_BUTTON(btnB), s);
+}
+int on_btnC_clicked (GtkButton *b)
+{
+    if (intRollsLeft == 3)
+    {
+        return 0;
+    }
+    char *s;
+    s = Hold(2);
+    gtk_button_set_label(GTK_BUTTON(btnC), s);
+}
+int on_btnD_clicked (GtkButton *b)
+{
+    if (intRollsLeft == 3)
+    {
+        return 0;
+    }
+    char *s;
+    s = Hold(3);
+    gtk_button_set_label(GTK_BUTTON(btnD), s);
+}
+int on_btnE_clicked (GtkButton *b)
+{
+    if (intRollsLeft == 3)
+    {
+        return 0;
+    }
+    char *s;
+    s = Hold(4);
+    gtk_button_set_label(GTK_BUTTON(btnE), s);
+}
+
+//checkmark buttons for 1 to 6
+int on_chk1_toggled(GtkToggleButton *t)
+{   
+    if (intRollsLeft == 3)
+    {
+        return 0;
+    }
+    intTopSpots++;
+    gtk_widget_hide(GTK_WIDGET(chk1));
+    gchar *TotalScore;
+    TotalScore = ScoreTop(1);
+    gtk_label_set_text (GTK_LABEL(lbl1), (const gchar* )TotalScore);
+    ResetTurn();
+    ResetHold();
+    
+    gchar *display;
+    display = g_strdup_printf("%d", intScore[0]);
+    gtk_label_set_text (GTK_LABEL(lblTopTotal1), (const gchar* )display);
+    bool a = CheckTop();
+    if (a == true)
+    {
+        FinishTop();
+    }
+}
+int on_chk2_toggled(GtkToggleButton *t)
+{   
+    if (intRollsLeft == 3)
+    {
+        return 0;
+    }
+    intTopSpots++;
+    gtk_widget_hide(GTK_WIDGET(chk2));
+    gchar *TotalScore;
+    TotalScore = ScoreTop(2);
+    gtk_label_set_text (GTK_LABEL(lbl2), (const gchar* )TotalScore);
+    ResetTurn();
+    ResetHold();
+    
+    gchar *display;
+    display = g_strdup_printf("%d", intScore[0]);
+    gtk_label_set_text (GTK_LABEL(lblTopTotal1), (const gchar* )display);
+    bool a = CheckTop();
+    if (a == true)
+    {
+        FinishTop();
+    }
+}
+int on_chk3_toggled(GtkToggleButton *t)
+{   
+    if (intRollsLeft == 3)
+    {
+        return 0;
+    }
+    intTopSpots++;
+    gtk_widget_hide(GTK_WIDGET(chk3));
+    gchar *TotalScore;
+    TotalScore = ScoreTop(3);
+    gtk_label_set_text (GTK_LABEL(lbl3), (const gchar* )TotalScore);
+    ResetTurn();
+    ResetHold();
+    
+    gchar *display;
+    display = g_strdup_printf("%d", intScore[0]);
+    gtk_label_set_text (GTK_LABEL(lblTopTotal1), (const gchar* )display);
+    bool a = CheckTop();
+    if (a == true)
+    {
+        FinishTop();
+    }
+}
+int on_chk4_toggled(GtkToggleButton *t)
+{   
+    if (intRollsLeft == 3)
+    {
+        return 0;
+    }
+    intTopSpots++;
+    gtk_widget_hide(GTK_WIDGET(chk4));
+    gchar *TotalScore;
+    TotalScore = ScoreTop(4);
+    gtk_label_set_text (GTK_LABEL(lbl4), (const gchar* )TotalScore);
+    ResetTurn();
+    ResetHold();
+    
+    gchar *display;
+    display = g_strdup_printf("%d", intScore[0]);
+    gtk_label_set_text (GTK_LABEL(lblTopTotal1), (const gchar* )display);
+    bool a = CheckTop();
+    if (a == true)
+    {
+        FinishTop();
+    }
+}
+int on_chk5_toggled(GtkToggleButton *t)
+{   
+    if (intRollsLeft == 3)
+    {
+        return 0;
+    }
+    intTopSpots++;
+    gtk_widget_hide(GTK_WIDGET(chk5));
+    gchar *TotalScore;
+    TotalScore = ScoreTop(5);
+    gtk_label_set_text (GTK_LABEL(lbl5), (const gchar* )TotalScore);
+    ResetTurn();
+    ResetHold();
+    
+    gchar *display;
+    display = g_strdup_printf("%d", intScore[0]);
+    gtk_label_set_text (GTK_LABEL(lblTopTotal1), (const gchar* )display);
+    bool a = CheckTop();
+    if (a == true)
+    {
+        FinishTop();
+    }
+}
+int on_chk6_toggled(GtkToggleButton *t)
+{   
+    if (intRollsLeft == 3)
+    {
+        return 0;
+    }
+    intTopSpots++;
+    gtk_widget_hide(GTK_WIDGET(chk6));
+    gchar *TotalScore;
+    TotalScore = ScoreTop(6);
+    gtk_label_set_text (GTK_LABEL(lbl6), (const gchar* )TotalScore);
+    ResetTurn();
+    ResetHold();
+    
+    gchar *display;
+    display = g_strdup_printf("%d", intScore[0]);
+    gtk_label_set_text (GTK_LABEL(lblTopTotal1), (const gchar* )display);
+    bool a = CheckTop();
+    if (a == true)
+    {
+        FinishTop();
+    }
+}
+
+void ResetHold()
+{
+    const gchar *z = "Roll";
+    gtk_button_set_label(GTK_BUTTON(btnA), z);
+    gtk_button_set_label(GTK_BUTTON(btnB), z);
+    gtk_button_set_label(GTK_BUTTON(btnC), z);
+    gtk_button_set_label(GTK_BUTTON(btnD), z);
+    gtk_button_set_label(GTK_BUTTON(btnE), z);
+}
+
+void *DisplayDice()
+{
     const gchar *charA = Spot[0].FileName;
     const gchar *charB = Spot[1].FileName;
     const gchar *charC = Spot[2].FileName;
@@ -124,82 +344,25 @@ int on_btnRoll_clicked (GtkButton *b)
     gtk_image_set_from_file (GTK_IMAGE(imgC), (const gchar* )charC);
     gtk_image_set_from_file (GTK_IMAGE(imgD), (const gchar* )charD);
     gtk_image_set_from_file (GTK_IMAGE(imgE), (const gchar* )charE);
-
 }
 
-// hold buttons
-int on_btnA_clicked (GtkButton *b)
+void FinishTop()
 {
-    char *s;
-    s = Hold(0);
-    gtk_button_set_label(GTK_BUTTON(btnA), s);
-    
-}
-int on_btnB_clicked (GtkButton *b)
-{
-    char *s;
-    s = Hold(1);
-    gtk_button_set_label(GTK_BUTTON(btnB), s);
-}
-int on_btnC_clicked (GtkButton *b)
-{
-    char *s;
-    s = Hold(2);
-    gtk_button_set_label(GTK_BUTTON(btnC), s);
-}
-int on_btnD_clicked (GtkButton *b)
-{
-    char *s;
-    s = Hold(3);
-    gtk_button_set_label(GTK_BUTTON(btnD), s);
-}
-int on_btnE_clicked (GtkButton *b)
-{
-    char *s;
-    s = Hold(4);
-    gtk_button_set_label(GTK_BUTTON(btnE), s);
-}
+    gchar *z;
+    //intScore[0] = 63;       //test data to ensure bonus is working
+    if(intScore[0] > 62)
+    {
+        intScore[0] = intScore[0] + 35;
+        z = "35";
+        gtk_label_set_text (GTK_LABEL(lblBonus), (const gchar* )z);
 
-//checkmark buttons for 1 to 6
-int on_chk1_toggled(GtkToggleButton *t)
-{   
-    gtk_widget_hide(GTK_WIDGET(chk1));
-    gchar *TotalScore;
-    TotalScore = ScoreTop(1);
-    gtk_label_set_text (GTK_LABEL(lbl1), (const gchar* )TotalScore);
-}
-int on_chk2_toggled(GtkToggleButton *t)
-{   
-    gtk_widget_hide(GTK_WIDGET(chk2));
-    gchar *TotalScore;
-    TotalScore = ScoreTop(2);
-    gtk_label_set_text (GTK_LABEL(lbl2), (const gchar* )TotalScore);
-}
-int on_chk3_toggled(GtkToggleButton *t)
-{   
-    gtk_widget_hide(GTK_WIDGET(chk3));
-    gchar *TotalScore;
-    TotalScore = ScoreTop(3);
-    gtk_label_set_text (GTK_LABEL(lbl3), (const gchar* )TotalScore);
-}
-int on_chk4_toggled(GtkToggleButton *t)
-{   
-    gtk_widget_hide(GTK_WIDGET(chk4));
-    gchar *TotalScore;
-    TotalScore = ScoreTop(4);
-    gtk_label_set_text (GTK_LABEL(lbl4), (const gchar* )TotalScore);
-}
-int on_chk5_toggled(GtkToggleButton *t)
-{   
-    gtk_widget_hide(GTK_WIDGET(chk5));
-    gchar *TotalScore;
-    TotalScore = ScoreTop(5);
-    gtk_label_set_text (GTK_LABEL(lbl5), (const gchar* )TotalScore);
-}
-int on_chk6_toggled(GtkToggleButton *t)
-{   
-    gtk_widget_hide(GTK_WIDGET(chk6));
-    gchar *TotalScore;
-    TotalScore = ScoreTop(6);
-    gtk_label_set_text (GTK_LABEL(lbl6), (const gchar* )TotalScore);
+    }
+    else
+    {
+        z = "0";
+        gtk_label_set_text (GTK_LABEL(lblBonus), (const gchar* )z);
+    }
+    gchar *display;
+    display = g_strdup_printf("%d", intScore[0]);
+    gtk_label_set_text (GTK_LABEL(lblTopTotal2), (const gchar* )display);
 }

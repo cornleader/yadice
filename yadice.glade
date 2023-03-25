@@ -501,7 +501,7 @@
         </child>
         <child>
           <object class="GtkButton" id="btnA">
-            <property name="label" translatable="yes">keep</property>
+            <property name="label" translatable="yes">Roll</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
@@ -514,7 +514,7 @@
         </child>
         <child>
           <object class="GtkButton" id="btnB">
-            <property name="label" translatable="yes">keep</property>
+            <property name="label" translatable="yes">Roll</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
@@ -527,7 +527,7 @@
         </child>
         <child>
           <object class="GtkButton" id="btnC">
-            <property name="label" translatable="yes">keep</property>
+            <property name="label" translatable="yes">Roll</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
@@ -540,7 +540,7 @@
         </child>
         <child>
           <object class="GtkButton" id="btnD">
-            <property name="label" translatable="yes">keep</property>
+            <property name="label" translatable="yes">Roll</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
@@ -553,7 +553,7 @@
         </child>
         <child>
           <object class="GtkButton" id="btnE">
-            <property name="label" translatable="yes">keep</property>
+            <property name="label" translatable="yes">Roll</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
@@ -566,7 +566,7 @@
         </child>
         <child>
           <object class="GtkButton" id="btnRoll">
-            <property name="label" translatable="yes">Roll</property>
+            <property name="label" translatable="yes">Roll Dice</property>
             <property name="width-request">84</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>

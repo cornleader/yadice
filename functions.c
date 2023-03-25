@@ -3,8 +3,25 @@
 #include "functions.h"
 
 
-//global struct
-extern struct DiceSpot Spot[4];
+//globals
+extern struct DiceSpot Spot[5];
+int intRollsLeft;
+
+
+//Check to see if top half is done ant do top totals and bonus
+bool CheckTop()
+{
+   bool a;
+   if (intTopSpots == 6)
+   {
+      a = true;
+   }
+   else
+   {
+      a = false;
+   }
+   return a;
+}
 
 //selects the proper image for each dice spot
 char *SelectImage(int a)
@@ -36,21 +53,22 @@ char *SelectImage(int a)
 }
 
 //clear structure
-void NewGame()
+void ResetTurn()
 {        
-    srand(time(NULL));
-    for (int x = 0; x < 5; x++)
-    {
+   for (int x = 0; x < 5; x++)
+   {
 
-        Spot[x].FileName = "6.png";
-        Spot[x].Value = rand () % 6 +1;
-        Spot[x].Hold = false;
-    }
+      //Spot[x].FileName = "6.png";
+      Spot[x].Value = rand () % 6 +1;
+      Spot[x].Hold = false;
+   }
+   intRollsLeft = 3;
 }
 
 //hold specific dice spots and change button display
 char *Hold(int i)
 {
+   
    char *q;
    if (Spot[i].Hold == false)
    {
@@ -61,7 +79,7 @@ char *Hold(int i)
    else
    {
       q = "Roll";
-      Spot[0].Hold = false; 
+      Spot[i].Hold = false; 
    }
    return q;
 }
@@ -69,17 +87,19 @@ char *Hold(int i)
 //assign and calculate ace to six spots on score card
 gchar *ScoreTop(int a)
 {
-   int intTotal = 0;
+   int intTotalPip = 0;
    for (int x = 0; x < 5; x++)
    {
       if(Spot[x].Value == a)
       {
-         intTotal = intTotal + a;
+         intTotalPip = intTotalPip + a;
       }      
    }
+   intRollsLeft = 3;
+   intScore[0] = intScore[0] + intTotalPip;
    //convert int to gchar
    gchar *display;
-   display = g_strdup_printf("%d", intTotal);  
+   display = g_strdup_printf("%d", intTotalPip);  
    //********************
    return display;
 }
