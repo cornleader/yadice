@@ -19,4 +19,4 @@ void ResetTurn();
 char *Hold(int i);
 gchar *ScoreTop(int a);
 bool CheckTop();
-//void Display();
+int TheMatrix(int p);
