@@ -32,6 +32,7 @@
 //Create a global struct to manage each of the 5 dice images and their parameters.
 struct DiceSpot Spot[5];
 int intTopSpots = 0;
+int intBotSpots = 0;
 int intScore[2];
 
 
@@ -42,8 +43,11 @@ GtkWidget *imgA, *imgB, *imgC, *imgD, *imgE;
 GtkWidget *btnA, *btnB, *btnC, *btnD, *btnE; 
 GtkWidget *chk1, *chk2, *chk3, *chk4, *chk5, *chk6; 
 GtkWidget *lbl1, *lbl2, *lbl3, *lbl4, *lbl5, *lbl6;
-GtkWidget *lblTopTotal1, *lblTopTotal2, *lblBonus;
+GtkWidget *lblTopTotal1, *lblTopTotal2, *lblBonus, *lblBotTotal;
+GtkWidget *lbl3oak, *lbl4oak, *lblFH, *lblSmSt, *lblLgSt, *lblYa, *lblCh;
+GtkWidget *chk3oak, *chk4oak, *chkFH, *chkSmSt, *chkLgSt, *chkYa, *chkCh;
 GtkBuilder	*builder;
+
 
 void ResetHold();
 void *DisplayDice();
@@ -92,10 +96,26 @@ int main(int argc, char *argv[])
     lbl4 = GTK_WIDGET(gtk_builder_get_object(builder, "lbl4"));
     lbl5 = GTK_WIDGET(gtk_builder_get_object(builder, "lbl5"));
     lbl6 = GTK_WIDGET(gtk_builder_get_object(builder, "lbl6"));
+    lbl3oak = GTK_WIDGET(gtk_builder_get_object(builder, "lbl3oak"));
+    lbl4oak = GTK_WIDGET(gtk_builder_get_object(builder, "lbl4oak"));
+    lblFH = GTK_WIDGET(gtk_builder_get_object(builder, "lblFH"));
+    lblSmSt = GTK_WIDGET(gtk_builder_get_object(builder, "lblSmSt"));
+    lblLgSt = GTK_WIDGET(gtk_builder_get_object(builder, "lblLgSt"));
+    lblYa = GTK_WIDGET(gtk_builder_get_object(builder, "lblYa"));
+    lblCh = GTK_WIDGET(gtk_builder_get_object(builder, "lblCh"));
+    chk3oak = GTK_WIDGET(gtk_builder_get_object(builder, "chk3oak"));
+    chk4oak = GTK_WIDGET(gtk_builder_get_object(builder, "chk4oak"));
+    chkFH = GTK_WIDGET(gtk_builder_get_object(builder, "chkFH"));
+    chkSmSt = GTK_WIDGET(gtk_builder_get_object(builder, "chkSmSt"));
+    chkLgSt = GTK_WIDGET(gtk_builder_get_object(builder, "chkLgSt"));
+    chkYa = GTK_WIDGET(gtk_builder_get_object(builder, "chkYa"));
+    chkCh = GTK_WIDGET(gtk_builder_get_object(builder, "chkCh"));
     btnRoll= GTK_WIDGET(gtk_builder_get_object(builder, "btnRoll"));
     lblTopTotal1 = GTK_WIDGET(gtk_builder_get_object(builder, "lblTopTotal1"));
     lblTopTotal2 = GTK_WIDGET(gtk_builder_get_object(builder, "lblTopTotal2"));
     lblBonus = GTK_WIDGET(gtk_builder_get_object(builder, "lblBonus"));
+    lblBotTotal = GTK_WIDGET(gtk_builder_get_object(builder, "lblBotTotal"));
+    lbl3oak = GTK_WIDGET(gtk_builder_get_object(builder, "lbl3oak"));
    
     gtk_widget_show(Window1);
 
@@ -129,7 +149,26 @@ int on_btnRoll_clicked (GtkButton *b)
     DisplayDice();
 }
 
-// hold buttons
+//Right side buttons  ******************************************************
+int on_chk3oak_toggled (GtkToggleButton *t)
+{
+    int e = 0;              //returns the score to add to label
+    int score = 0;
+    if (intRollsLeft == 3)
+    {
+        return 0;
+    }
+    intBotSpots++;
+    e = TheMatrix(1);       //passing 1 checks for 3 of a kind
+    
+    gchar *display;
+    display = g_strdup_printf("%d", e);
+    gtk_label_set_text (GTK_LABEL(lbl3oak), (const gchar* )display);    
+
+
+
+}
+// hold buttons *************************************************
 int on_btnA_clicked (GtkButton *b)
 {
     if (intRollsLeft == 3)
@@ -182,7 +221,7 @@ int on_btnE_clicked (GtkButton *b)
     gtk_button_set_label(GTK_BUTTON(btnE), s);
 }
 
-//checkmark buttons for 1 to 6
+//checkmark buttons for 1 to 6  ****************************************************
 int on_chk1_toggled(GtkToggleButton *t)
 {   
     if (intRollsLeft == 3)
@@ -346,6 +385,7 @@ void *DisplayDice()
     gtk_image_set_from_file (GTK_IMAGE(imgE), (const gchar* )charE);
 }
 
+// check for top bonus and apply. calculate top score
 void FinishTop()
 {
     gchar *z;

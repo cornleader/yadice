@@ -603,7 +603,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="draw-indicator">True</property>
-                        <signal name="toggled" handler="on_chk3oak_toggled" swapped="no"/>
                       </object>
                       <packing>
                         <property name="x">250</property>
@@ -686,7 +685,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="draw-indicator">True</property>
-                        <signal name="toggled" handler="on_chk4oak_toggled" swapped="no"/>
                       </object>
                       <packing>
                         <property name="x">250</property>
@@ -734,7 +732,6 @@
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="draw-indicator">True</property>
-                        <signal name="toggled" handler="on_chkFH_toggled" swapped="no"/>
                       </object>
                       <packing>
                         <property name="x">250</property>
@@ -783,7 +780,6 @@ Sequence of 4</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="draw-indicator">True</property>
-                        <signal name="toggled" handler="on_chkSmSt_toggled" swapped="no"/>
                       </object>
                       <packing>
                         <property name="x">250</property>
@@ -832,7 +828,6 @@ Sequence of 5</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="draw-indicator">True</property>
-                        <signal name="toggled" handler="on_chkLgSt_toggled" swapped="no"/>
                       </object>
                       <packing>
                         <property name="x">250</property>
@@ -880,7 +875,6 @@ Sequence of 5</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="draw-indicator">True</property>
-                        <signal name="toggled" handler="on_chkYa_toggled" swapped="no"/>
                       </object>
                       <packing>
                         <property name="x">250</property>
@@ -973,7 +967,6 @@ Sequence of 5</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">False</property>
                         <property name="draw-indicator">True</property>
-                        <signal name="toggled" handler="on_chkCh_toggled" swapped="no"/>
                       </object>
                       <packing>
                         <property name="x">250</property>
