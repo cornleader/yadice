@@ -20,5 +20,7 @@ char *SelectImage(int a);
 void ResetTurn();
 char *Hold(int i);
 gchar *ScoreTop(int a);
+//bool CheckTop();
+//void Display();
 bool CheckLR(int v);
 int TheMatrix(int p);

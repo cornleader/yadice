@@ -150,17 +150,20 @@ int on_btnRoll_clicked (GtkButton *b)
     DisplayDice();
 }
 
-
 //Right side buttons  ******************************************************
 int on_chk3oak_toggled (GtkToggleButton *t)
 {
     int e = 0;              //returns the score to add to label
+
     gchar *display;
+
+    int score = 0;
 
     if (intRollsLeft == 3)
     {
         return 0;
     }
+
 
     intBotSpots++;
     gtk_widget_hide(GTK_WIDGET(chk3oak));
@@ -365,6 +368,13 @@ int on_chkCh_toggled (GtkToggleButton *t)
     }
     
     
+    intBotSpots++;
+    e = TheMatrix(1);       //passing 1 checks for 3 of a kind
+    
+    
+    display = g_strdup_printf("%d", e);
+    gtk_label_set_text (GTK_LABEL(lbl3oak), (const gchar* )display);    
+
 }
 // hold buttons *************************************************
 int on_btnA_clicked (GtkButton *b)

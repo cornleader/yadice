@@ -8,8 +8,73 @@
 //globals
 extern struct DiceSpot Spot[5];
 int intRollsLeft;
+/*
+// check for three of a kind
 
+//          2  5  2  4  6 = 020111  false
+//          5  5  5  1  2 = 110030  true
+// p is an int that lets the function know what we are checking for
+// 1=3 of a kind
+int TheMatrix(int p)
+{
+   int intBoxTotal, intPips = 0;              // box total holds return score 
+   int intMatrix[6] = {0};
 
+   //set up matrix
+   for (int a = 0; a < 6; a++)
+   {
+     for (int k = 0; k < 5; k++)
+     {
+         if (Spot[k].Value == a + 1)
+         {
+            intMatrix[a]++;
+         }
+      }
+   }
+
+   // 3 of a kind
+   if (p == 1); 
+   {
+      
+      intBoxTotal = 0;
+      
+      for (int k = 0; k < 6; k++) 
+      {
+         if (intMatrix[k] > 2)         // 3 of a kind sets bool w[1] to true
+         {
+            for (int m = 0; m < 6; m++)
+            {
+               intBoxTotal = intBoxTotal + Spot[m].Value;
+            }
+            return intBoxTotal;
+         }  
+      }
+      intBoxTotal = 0;
+      return intBoxTotal;   
+   } 
+   
+   // 4 of a kind
+   if (p == 2); 
+   {
+      intBoxTotal = 0;
+      for (int a = 0; a < 6; a++)
+      {
+         if (intMatrix[a] > 3)         // 4 of a kind sets bool w[1] to true 
+         {
+               for (int k = 0; k < 6; k++) 
+               {
+                  intBoxTotal = intBoxTotal + Spot[k].Value;
+               }
+               return intBoxTotal;
+         }
+      }
+      intBoxTotal = 0;
+      return intBoxTotal;
+   }
+
+   
+}
+*/
 /****************************************************************
 *                   T H E   M A T R I X                         *
 *****************************************************************
