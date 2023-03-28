@@ -52,6 +52,7 @@ GtkBuilder	*builder;
 void ResetHold();
 void *DisplayDice();
 void FinishTop();
+
 //*******************************************************
 // int main. build window and elements usig glade file
 //*******************************************************
@@ -149,24 +150,221 @@ int on_btnRoll_clicked (GtkButton *b)
     DisplayDice();
 }
 
+
 //Right side buttons  ******************************************************
 int on_chk3oak_toggled (GtkToggleButton *t)
 {
     int e = 0;              //returns the score to add to label
-    int score = 0;
+    gchar *display;
+
     if (intRollsLeft == 3)
     {
         return 0;
     }
+
     intBotSpots++;
+    gtk_widget_hide(GTK_WIDGET(chk3oak));
     e = TheMatrix(1);       //passing 1 checks for 3 of a kind
-    
-    gchar *display;
+    intScore[1] = intScore[1] + e;
+
+    display = g_strdup_printf("%d", intScore[1]);
+    gtk_label_set_text (GTK_LABEL(lblBotTotal), (const gchar* )display);    
+
+
     display = g_strdup_printf("%d", e);
     gtk_label_set_text (GTK_LABEL(lbl3oak), (const gchar* )display);    
+    
+    ResetTurn();
+    ResetHold();
+    
+    if(intTopSpots == 6 && intBotSpots == 7)
+    {
+        //run game over
+    }
+    
+}
+int on_chk4oak_toggled (GtkToggleButton *t)
+{
+    int e = 0;              //returns the score to add to label
+    gchar *display;
 
+    if (intRollsLeft == 3)
+    {
+        return 0;
+    }
 
+    intBotSpots++;
+    gtk_widget_hide(GTK_WIDGET(chk4oak));
+    e = TheMatrix(2);       //passing 2 checks for 4 of a kind
+    intScore[1] = intScore[1] + e;
+  
+    display = g_strdup_printf("%d", intScore[1]);
+    gtk_label_set_text (GTK_LABEL(lblBotTotal), (const gchar* )display);
+    
+    display = g_strdup_printf("%d", e);
+    gtk_label_set_text (GTK_LABEL(lbl4oak), (const gchar* )display);    
 
+    ResetTurn();
+    ResetHold();
+    
+    if(intTopSpots == 6 && intBotSpots == 7)
+    {
+        //run game over
+    }
+    
+}
+int on_chkFH_toggled (GtkToggleButton *t)
+{
+    int e = 0;              //returns the score to add to label
+    gchar *display;
+
+    if (intRollsLeft == 3)
+    {
+        return 0;
+    }
+
+    intBotSpots++;
+    gtk_widget_hide(GTK_WIDGET(chkFH));
+    e = TheMatrix(3);       //passing 3 checks for full house
+    intScore[1] = intScore[1] + e;
+  
+    display = g_strdup_printf("%d", intScore[1]);
+    gtk_label_set_text (GTK_LABEL(lblBotTotal), (const gchar* )display);
+    
+    display = g_strdup_printf("%d", e);
+    gtk_label_set_text (GTK_LABEL(lblFH), (const gchar* )display);    
+
+    ResetTurn();
+    ResetHold();
+    
+    if(intTopSpots == 6 && intBotSpots == 7)
+    {
+        //run game over
+    }
+    
+}
+int on_chkSmSt_toggled (GtkToggleButton *t)
+{
+    int e = 0;              //returns the score to add to label
+    gchar *display;
+
+    if (intRollsLeft == 3)
+    {
+        return 0;
+    }
+
+    intBotSpots++;
+    gtk_widget_hide(GTK_WIDGET(chkSmSt));
+    e = TheMatrix(4);       //passing 4 checks for small straight
+    intScore[1] = intScore[1] + e;
+  
+    display = g_strdup_printf("%d", intScore[1]);
+    gtk_label_set_text (GTK_LABEL(lblBotTotal), (const gchar* )display);
+    
+    display = g_strdup_printf("%d", e);
+    gtk_label_set_text (GTK_LABEL(lblSmSt), (const gchar* )display);    
+
+    ResetTurn();
+    ResetHold();
+    
+    if(intTopSpots == 6 && intBotSpots == 7)
+    {
+        //run game over
+    }
+    
+}
+int on_chkLgSt_toggled (GtkToggleButton *t)
+{
+    int e = 0;              //returns the score to add to label
+    gchar *display;
+
+    if (intRollsLeft == 3)
+    {
+        return 0;
+    }
+
+    intBotSpots++;
+    gtk_widget_hide(GTK_WIDGET(chkLgSt));
+    e = TheMatrix(5);       //passing 5 checks for lg straight
+    intScore[1] = intScore[1] + e;
+  
+    display = g_strdup_printf("%d", intScore[1]);
+    gtk_label_set_text (GTK_LABEL(lblBotTotal), (const gchar* )display);
+    
+    display = g_strdup_printf("%d", e);
+    gtk_label_set_text (GTK_LABEL(lblLgSt), (const gchar* )display);    
+
+    ResetTurn();
+    ResetHold();
+    
+    if(intTopSpots == 6 && intBotSpots == 7)
+    {
+        //run game over
+    }
+    
+    
+}
+int on_chkYa_toggled (GtkToggleButton *t)
+{
+    int e = 0;              //returns the score to add to label
+    gchar *display;
+
+    if (intRollsLeft == 3)
+    {
+        return 0;
+    }
+
+    intBotSpots++;
+    gtk_widget_hide(GTK_WIDGET(chkYa));
+    e = TheMatrix(6);       //passing 6 checks for yatzee
+    intScore[1] = intScore[1] + e;
+  
+    display = g_strdup_printf("%d", intScore[1]);
+    gtk_label_set_text (GTK_LABEL(lblBotTotal), (const gchar* )display);
+    
+    display = g_strdup_printf("%d", e);
+    gtk_label_set_text (GTK_LABEL(lblYa), (const gchar* )display);    
+
+    ResetTurn();
+    ResetHold();
+    
+    if(intTopSpots == 6 && intBotSpots == 7)
+    {
+        //run game over
+    }
+    
+    
+}
+int on_chkCh_toggled (GtkToggleButton *t)
+{
+    int e = 0;              //returns the score to add to label
+    gchar *display;
+
+    if (intRollsLeft == 3)
+    {
+        return 0;
+    }
+
+    intBotSpots++;
+    gtk_widget_hide(GTK_WIDGET(chkCh));
+    e = TheMatrix(7);       //passing 7 checks for chance
+    intScore[1] = intScore[1] + e;
+  
+    display = g_strdup_printf("%d", intScore[1]);
+    gtk_label_set_text (GTK_LABEL(lblBotTotal), (const gchar* )display);
+    
+    display = g_strdup_printf("%d", e);
+    gtk_label_set_text (GTK_LABEL(lblCh), (const gchar* )display);    
+
+    ResetTurn();
+    ResetHold();
+    
+    if(intTopSpots == 6 && intBotSpots == 7)
+    {
+        //run game over
+    }
+    
+    
 }
 // hold buttons *************************************************
 int on_btnA_clicked (GtkButton *b)
@@ -239,7 +437,7 @@ int on_chk1_toggled(GtkToggleButton *t)
     gchar *display;
     display = g_strdup_printf("%d", intScore[0]);
     gtk_label_set_text (GTK_LABEL(lblTopTotal1), (const gchar* )display);
-    bool a = CheckTop();
+    bool a = CheckLR(1);
     if (a == true)
     {
         FinishTop();
@@ -262,7 +460,7 @@ int on_chk2_toggled(GtkToggleButton *t)
     gchar *display;
     display = g_strdup_printf("%d", intScore[0]);
     gtk_label_set_text (GTK_LABEL(lblTopTotal1), (const gchar* )display);
-    bool a = CheckTop();
+    bool a = CheckLR(1);
     if (a == true)
     {
         FinishTop();
@@ -285,7 +483,7 @@ int on_chk3_toggled(GtkToggleButton *t)
     gchar *display;
     display = g_strdup_printf("%d", intScore[0]);
     gtk_label_set_text (GTK_LABEL(lblTopTotal1), (const gchar* )display);
-    bool a = CheckTop();
+    bool a = CheckLR(1);
     if (a == true)
     {
         FinishTop();
@@ -308,7 +506,7 @@ int on_chk4_toggled(GtkToggleButton *t)
     gchar *display;
     display = g_strdup_printf("%d", intScore[0]);
     gtk_label_set_text (GTK_LABEL(lblTopTotal1), (const gchar* )display);
-    bool a = CheckTop();
+    bool a = CheckLR(1);
     if (a == true)
     {
         FinishTop();
@@ -331,7 +529,7 @@ int on_chk5_toggled(GtkToggleButton *t)
     gchar *display;
     display = g_strdup_printf("%d", intScore[0]);
     gtk_label_set_text (GTK_LABEL(lblTopTotal1), (const gchar* )display);
-    bool a = CheckTop();
+    bool a = CheckLR(1);
     if (a == true)
     {
         FinishTop();
@@ -354,7 +552,7 @@ int on_chk6_toggled(GtkToggleButton *t)
     gchar *display;
     display = g_strdup_printf("%d", intScore[0]);
     gtk_label_set_text (GTK_LABEL(lblTopTotal1), (const gchar* )display);
-    bool a = CheckTop();
+    bool a = CheckLR(1);
     if (a == true)
     {
         FinishTop();
@@ -406,3 +604,4 @@ void FinishTop()
     display = g_strdup_printf("%d", intScore[0]);
     gtk_label_set_text (GTK_LABEL(lblTopTotal2), (const gchar* )display);
 }
+

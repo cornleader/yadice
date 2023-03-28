@@ -1,18 +1,27 @@
 #include <gtk/gtk.h>
+#include <gtk/gtkx.h>
 #include <stdbool.h>
 #include "functions.h"
+#include <stdbool.h>
 
 
 //globals
 extern struct DiceSpot Spot[5];
 int intRollsLeft;
 
-// check for three of a kind
 
-//          2  5  2  4  6 = 020111  false
-//          5  5  5  1  2 = 110030  true
-// p is an int that lets the function know what we are checking for
-// 1=3 of a kind
+/****************************************************************
+*                   T H E   M A T R I X                         *
+*****************************************************************
+*                  2  5  2  4  6 = 020111                       *
+*                  5  5  5  1  2 = 110030                       *
+*                                                               *
+*  p is an int that lets the function know what we are checking *
+*  for.                                                         *
+*  1 - 3 of a kind                                              *
+*  2 - 4 of a kind                                              *
+*  4 - full house                                               *
+*****************************************************************/
 int TheMatrix(int p)
 {
    int intBoxTotal, intPips = 0;              // box total holds return score 
@@ -31,18 +40,18 @@ int TheMatrix(int p)
    }
 
    // 3 of a kind
-   if (p == 1); 
+   if (p == 1) 
    {
       
       intBoxTotal = 0;
       
-      for (int k = 0; k < 6; k++) 
+      for (int i = 0; i < 6; i++) 
       {
-         if (intMatrix[k] > 2)         // 3 of a kind sets bool w[1] to true
+         if (intMatrix[i] > 2)         // 3 of a kind sets bool w[1] to true
          {
-            for (int m = 0; m < 6; m++)
+            for (int x = 0; x < 5; x++)
             {
-               intBoxTotal = intBoxTotal + Spot[m].Value;
+               intBoxTotal = intBoxTotal + Spot[x].Value;
             }
             return intBoxTotal;
          }  
@@ -52,16 +61,16 @@ int TheMatrix(int p)
    } 
    
    // 4 of a kind
-   if (p == 2); 
+   else if (p == 2) 
    {
       intBoxTotal = 0;
-      for (int a = 0; a < 6; a++)
+      for (int k = 0; k < 6; k++)
       {
-         if (intMatrix[a] > 3)         // 4 of a kind sets bool w[1] to true 
+         if (intMatrix[k] > 3)         // 4 of a kind totals dice 
          {
-               for (int k = 0; k < 6; k++) 
+               for (int m = 0; m < 5; m++) 
                {
-                  intBoxTotal = intBoxTotal + Spot[k].Value;
+                  intBoxTotal = intBoxTotal + Spot[m].Value;
                }
                return intBoxTotal;
          }
@@ -70,22 +79,126 @@ int TheMatrix(int p)
       return intBoxTotal;
    }
 
-   
+   // full house
+   else if (p == 3)
+   {
+      bool i[2] = {false};                   // one for a 2 and one for a 3 in matrix
+      int r = 0;
+      for (int x = 0; x < 5; x++)
+      {
+         if(intMatrix[x] == 2)
+         {
+            i[0] = true;
+         }
+         if(intMatrix[x] == 3)
+         {
+            i[1] = true;
+         }
+      }
+      if (i[0] == true && i[1] == true)
+      {
+         r = 25;
+         return r;                           
+      }
+      else
+      {
+         r = 0;
+         return r;
+      }
+   }
+   //sm straight
+   // 1 1 1 1 0 0
+   // 0 1 1 1 1 0
+   // 0 0 1 1 1 1
+   else if (p == 4)
+   {
+      if(intMatrix[0] > 0 && intMatrix[1] > 0 && intMatrix[2] > 0 && intMatrix[3] > 0)
+      {
+         int r = 30;
+         return r;
+      }
+      if(intMatrix[4] > 0 && intMatrix[1] > 0 && intMatrix[2] > 0 && intMatrix[3] > 0)
+      {
+         int r = 30;
+         return r;
+      }
+      if(intMatrix[4] > 0 && intMatrix[5] > 0 && intMatrix[2] > 0 && intMatrix[3] > 0)
+      {
+         int r = 30;
+         return r;
+      }
+   }
+   //lg straight
+   // 1 1 1 1 1 0
+   // 0 1 1 1 1 1
+   else if (p == 5)
+   {
+      if(intMatrix[0] > 0 && intMatrix[1] > 0 && intMatrix[2] > 0 && intMatrix[3] > 0 && intMatrix[4] > 0)
+      {
+         int r = 40;
+         return r;
+      }
+      if(intMatrix[4] > 0 && intMatrix[5] > 0 && intMatrix[2] > 0 && intMatrix[3] > 0 && intMatrix[1] > 0)
+      {
+         int r = 40;
+         return r;
+      }
+   }
+   // yathzee 
+   else if (p == 6) 
+   {
+      for (int k = 0; k < 6; k++)
+      {
+         if (intMatrix[k] == 5)         // 4 of a kind totals dice 
+         {
+               int r = 50;
+               return r;
+         }
+      }
+      int r = 0;
+      return r;
+   }
+   else if (p == 7) 
+   {  
+      int r = 0;
+      for (int x = 0; x < 5; x++)
+      {
+         r = r + Spot[x].Value;
+      }
+      return r;
+   } 
 }
 
-//Check to see if top half is done ant do top totals and bonus
-bool CheckTop()
+// Check to see if left or right is done ant do totals and bonus
+// v parameter recieves a 1 for left or 2 for right
+// bool a is true when all spots have been filled for left or right
+bool CheckLR(int v)
 {
    bool a;
-   if (intTopSpots == 6)
+   if(v == 1)
    {
-      a = true;
+      if (intTopSpots == 6)
+      {
+         a = true;
+      }
+      else
+      {
+         a = false;
+      }
+      return a;
    }
-   else
+   if(v == 2)
    {
-      a = false;
+      if (intBotSpots == 7)
+      {
+         a = true;
+      }
+      else
+      {
+         a = false;
+      }
+      return a;
    }
-   return a;
 }
 
 //selects the proper image for each dice spot
