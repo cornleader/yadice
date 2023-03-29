@@ -43,7 +43,7 @@ GtkWidget *imgA, *imgB, *imgC, *imgD, *imgE;
 GtkWidget *btnA, *btnB, *btnC, *btnD, *btnE; 
 GtkWidget *chk1, *chk2, *chk3, *chk4, *chk5, *chk6; 
 GtkWidget *lbl1, *lbl2, *lbl3, *lbl4, *lbl5, *lbl6;
-GtkWidget *lblTopTotal1, *lblTopTotal2, *lblBonus, *lblBotTotal;
+GtkWidget *lblTopTotal1, *lblTopTotal2, *lblBonus, *lblBotTotal, *lblGrandTotal, *lblGameOver;
 GtkWidget *lbl3oak, *lbl4oak, *lblFH, *lblSmSt, *lblLgSt, *lblYa, *lblCh;
 GtkWidget *chk3oak, *chk4oak, *chkFH, *chkSmSt, *chkLgSt, *chkYa, *chkCh;
 GtkBuilder	*builder;
@@ -52,6 +52,7 @@ GtkBuilder	*builder;
 void ResetHold();
 void *DisplayDice();
 void FinishTop();
+void GameOver();
 
 //*******************************************************
 // int main. build window and elements usig glade file
@@ -117,10 +118,12 @@ int main(int argc, char *argv[])
     lblBonus = GTK_WIDGET(gtk_builder_get_object(builder, "lblBonus"));
     lblBotTotal = GTK_WIDGET(gtk_builder_get_object(builder, "lblBotTotal"));
     lbl3oak = GTK_WIDGET(gtk_builder_get_object(builder, "lbl3oak"));
-   
+    lblGrandTotal = GTK_WIDGET(gtk_builder_get_object(builder, "lblGrandTotal"));        
+    lblGameOver = GTK_WIDGET(gtk_builder_get_object(builder, "lblGameOver"));
+
     gtk_widget_show(Window1);
 
-  
+    gtk_widget_hide(GTK_WIDGET(lblGameOver));
   
     gtk_main();
   
@@ -182,7 +185,8 @@ int on_chk3oak_toggled (GtkToggleButton *t)
     
     if(intTopSpots == 6 && intBotSpots == 7)
     {
-        //run game over
+        GameOver();
+                
     }
     
 }
@@ -212,7 +216,7 @@ int on_chk4oak_toggled (GtkToggleButton *t)
     
     if(intTopSpots == 6 && intBotSpots == 7)
     {
-        //run game over
+        GameOver();
     }
     
 }
@@ -242,7 +246,7 @@ int on_chkFH_toggled (GtkToggleButton *t)
     
     if(intTopSpots == 6 && intBotSpots == 7)
     {
-        //run game over
+        GameOver();
     }
     
 }
@@ -272,7 +276,7 @@ int on_chkSmSt_toggled (GtkToggleButton *t)
     
     if(intTopSpots == 6 && intBotSpots == 7)
     {
-        //run game over
+        GameOver();
     }
     
 }
@@ -302,7 +306,7 @@ int on_chkLgSt_toggled (GtkToggleButton *t)
     
     if(intTopSpots == 6 && intBotSpots == 7)
     {
-        //run game over
+        GameOver();
     }
     
     
@@ -333,7 +337,7 @@ int on_chkYa_toggled (GtkToggleButton *t)
     
     if(intTopSpots == 6 && intBotSpots == 7)
     {
-        //run game over
+        GameOver();
     }
     
     
@@ -364,17 +368,17 @@ int on_chkCh_toggled (GtkToggleButton *t)
     
     if(intTopSpots == 6 && intBotSpots == 7)
     {
-        //run game over
+        GameOver();
     }
     
-    
+    /*
     intBotSpots++;
     e = TheMatrix(1);       //passing 1 checks for 3 of a kind
     
     
     display = g_strdup_printf("%d", e);
     gtk_label_set_text (GTK_LABEL(lbl3oak), (const gchar* )display);    
-
+    */
 }
 // hold buttons *************************************************
 int on_btnA_clicked (GtkButton *b)
@@ -452,6 +456,10 @@ int on_chk1_toggled(GtkToggleButton *t)
     {
         FinishTop();
     }
+    if(intTopSpots == 6 && intBotSpots == 7)
+    {
+        GameOver();
+    }
 }
 int on_chk2_toggled(GtkToggleButton *t)
 {   
@@ -474,6 +482,10 @@ int on_chk2_toggled(GtkToggleButton *t)
     if (a == true)
     {
         FinishTop();
+    }
+    if(intTopSpots == 6 && intBotSpots == 7)
+    {
+        GameOver();
     }
 }
 int on_chk3_toggled(GtkToggleButton *t)
@@ -498,6 +510,10 @@ int on_chk3_toggled(GtkToggleButton *t)
     {
         FinishTop();
     }
+    if(intTopSpots == 6 && intBotSpots == 7)
+    {
+        GameOver();
+    }
 }
 int on_chk4_toggled(GtkToggleButton *t)
 {   
@@ -520,6 +536,10 @@ int on_chk4_toggled(GtkToggleButton *t)
     if (a == true)
     {
         FinishTop();
+    }
+    if(intTopSpots == 6 && intBotSpots == 7)
+    {
+        GameOver();
     }
 }
 int on_chk5_toggled(GtkToggleButton *t)
@@ -544,6 +564,10 @@ int on_chk5_toggled(GtkToggleButton *t)
     {
         FinishTop();
     }
+    if(intTopSpots == 6 && intBotSpots == 7)
+    {
+        GameOver();
+    }
 }
 int on_chk6_toggled(GtkToggleButton *t)
 {   
@@ -566,6 +590,10 @@ int on_chk6_toggled(GtkToggleButton *t)
     if (a == true)
     {
         FinishTop();
+    }
+    if(intTopSpots == 6 && intBotSpots == 7)
+    {
+        GameOver();
     }
 }
 
@@ -615,3 +643,15 @@ void FinishTop()
     gtk_label_set_text (GTK_LABEL(lblTopTotal2), (const gchar* )display);
 }
 
+void GameOver()
+{
+    int z = 0;
+    z = intScore[0] + intScore[1];
+
+    gtk_widget_show(GTK_WIDGET(lblGameOver));
+    gtk_widget_show(GTK_WIDGET(lblGrandTotal));
+
+    gchar *display;
+    display = g_strdup_printf("%d", z);
+    gtk_label_set_text (GTK_LABEL(lblGrandTotal), (const gchar* )display);    
+}

@@ -435,150 +435,6 @@
           </packing>
         </child>
         <child>
-          <object class="GtkImage" id="imgA">
-            <property name="width-request">50</property>
-            <property name="height-request">50</property>
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="pixbuf">1.png</property>
-          </object>
-          <packing>
-            <property name="x">220</property>
-            <property name="y">420</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkImage" id="imgC">
-            <property name="width-request">50</property>
-            <property name="height-request">50</property>
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="pixbuf">1.png</property>
-          </object>
-          <packing>
-            <property name="x">340</property>
-            <property name="y">420</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkImage" id="imgB">
-            <property name="width-request">50</property>
-            <property name="height-request">50</property>
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="pixbuf">1.png</property>
-          </object>
-          <packing>
-            <property name="x">280</property>
-            <property name="y">420</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkImage" id="imgE">
-            <property name="width-request">50</property>
-            <property name="height-request">50</property>
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="pixbuf">1.png</property>
-          </object>
-          <packing>
-            <property name="x">460</property>
-            <property name="y">420</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkImage" id="imgD">
-            <property name="width-request">50</property>
-            <property name="height-request">50</property>
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="pixbuf">1.png</property>
-          </object>
-          <packing>
-            <property name="x">400</property>
-            <property name="y">420</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="btnA">
-            <property name="label" translatable="yes">Roll</property>
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <signal name="clicked" handler="on_btnA_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="x">217</property>
-            <property name="y">475</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="btnB">
-            <property name="label" translatable="yes">Roll</property>
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <signal name="clicked" handler="on_btnB_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="x">278</property>
-            <property name="y">475</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="btnC">
-            <property name="label" translatable="yes">Roll</property>
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <signal name="clicked" handler="on_btnC_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="x">338</property>
-            <property name="y">475</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="btnD">
-            <property name="label" translatable="yes">Roll</property>
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <signal name="clicked" handler="on_btnD_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="x">398</property>
-            <property name="y">475</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="btnE">
-            <property name="label" translatable="yes">Roll</property>
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <signal name="clicked" handler="on_btnE_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="x">458</property>
-            <property name="y">475</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="btnRoll">
-            <property name="label" translatable="yes">Roll Dice</property>
-            <property name="width-request">84</property>
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <signal name="clicked" handler="on_btnRoll_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="x">327</property>
-            <property name="y">552</property>
-          </packing>
-        </child>
-        <child>
           <object class="GtkFrame">
             <property name="width-request">100</property>
             <property name="height-request">80</property>
@@ -1106,6 +962,203 @@ Sequence of 5</property>
           <packing>
             <property name="x">393</property>
             <property name="y">30</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkFrame">
+            <property name="width-request">350</property>
+            <property name="height-request">180</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label-xalign">0</property>
+            <property name="shadow-type">out</property>
+            <child>
+              <object class="GtkAlignment">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="left-padding">12</property>
+                <child>
+                  <object class="GtkFixed">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <child>
+                      <object class="GtkImage" id="imgA">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="pixbuf">1.png</property>
+                      </object>
+                      <packing>
+                        <property name="x">5</property>
+                        <property name="y">15</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="btnA">
+                        <property name="label" translatable="yes">Roll</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <signal name="clicked" handler="on_btnA_clicked" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="x">5</property>
+                        <property name="y">75</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkImage" id="imgB">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="pixbuf">1.png</property>
+                      </object>
+                      <packing>
+                        <property name="x">75</property>
+                        <property name="y">15</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="btnB">
+                        <property name="label" translatable="yes">Roll</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <signal name="clicked" handler="on_btnB_clicked" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="x">75</property>
+                        <property name="y">75</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkImage" id="imgC">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="pixbuf">1.png</property>
+                      </object>
+                      <packing>
+                        <property name="x">140</property>
+                        <property name="y">15</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="btnC">
+                        <property name="label" translatable="yes">Roll</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <signal name="clicked" handler="on_btnC_clicked" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="x">140</property>
+                        <property name="y">75</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkImage" id="imgD">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="pixbuf">1.png</property>
+                      </object>
+                      <packing>
+                        <property name="x">205</property>
+                        <property name="y">15</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="btnD">
+                        <property name="label" translatable="yes">Roll</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <signal name="clicked" handler="on_btnD_clicked" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="x">205</property>
+                        <property name="y">75</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkImage" id="imgE">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="pixbuf">1.png</property>
+                      </object>
+                      <packing>
+                        <property name="x">270</property>
+                        <property name="y">15</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="btnE">
+                        <property name="label" translatable="yes">Roll</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <signal name="clicked" handler="on_btnE_clicked" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="x">270</property>
+                        <property name="y">75</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="btnRoll">
+                        <property name="label" translatable="yes">Roll Dice</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <signal name="clicked" handler="on_btnRoll_clicked" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="x">125</property>
+                        <property name="y">125</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child type="label_item">
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="x">181</property>
+            <property name="y">366</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="lblGameOver">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">G A M E     O V E R</property>
+            <attributes>
+              <attribute name="scale" value="1.7"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="x">271</property>
+            <property name="y">555</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="lblGrandTotal">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="margin-left">5</property>
+            <property name="margin-right">5</property>
+            <property name="label" translatable="yes">000</property>
+            <attributes>
+              <attribute name="font-desc" value="Sans Bold 10"/>
+              <attribute name="scale" value="4"/>
+              <attribute name="foreground" value="#000000000000"/>
+              <attribute name="background" value="#ffffffffffff"/>
+              <attribute name="size" value="6144"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="x">324</property>
+            <property name="y">590</property>
           </packing>
         </child>
       </object>
