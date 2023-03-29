@@ -12,7 +12,7 @@ struct DiceSpot
 extern int intRollsLeft;        //keep track of remaining rolls per turn
 extern int intTopSpots;         //keeps track of when all top slots have been filled
 extern int intBotSpots;         //keeps track of when all top bottom have been filled
-extern int intScore[2];
+extern int intScore[2];         //score[0] is the left score score[1] is right
 
 //declare functions
 char *CombineStrings(int *A, const char*B);
